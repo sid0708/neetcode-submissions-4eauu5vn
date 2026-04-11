@@ -1,0 +1,12 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        L, maxLength, maxfreq = 0,0, 0
+        freq = {}
+        for R in range(len(s)):
+            freq[s[R]] = 1 + freq.get(s[R], 0)
+            maxfreq = max(maxfreq, freq[s[R]])
+            while R-L+1 -maxfreq >k:
+                freq[s[L]] -=1
+                L +=1
+            maxLength = max(maxLength, R-L+1)
+        return maxLength
